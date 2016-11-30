@@ -1,5 +1,6 @@
 package com.epam.ilya.domain.entities;
 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -7,6 +8,7 @@ import javax.persistence.MappedSuperclass;
 public class BaseEntity {
 
     @Id
+    @GeneratedValue
     private long id;
 
     public BaseEntity() {
