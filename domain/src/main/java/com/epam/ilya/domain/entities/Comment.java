@@ -5,24 +5,21 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "Comment")
+@Table(name = "comments")
 public class Comment extends BaseEntity implements Serializable {
     private static final long serialVersionUID = -5032854930770123363L;
 
-    @Column(name = "AUTHOR")
+    @Column(name = "author")
     private String author;
 
-    @Column(name = "\"date\"")
-    private LocalDate date;
-
-    @Column(name = "CONTENT")
+    @Column(name = "content")
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "NEWS_ID", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "news_id", insertable = false, updatable = false, nullable = false)
     private News news;
 
-    @Column(name = "NEWS_ID")
+    @Column(name = "news_id")
     private int newsId;
 
     public Comment() {
@@ -43,15 +40,6 @@ public class Comment extends BaseEntity implements Serializable {
     public void setAuthor(String author) {
         this.author = author;
     }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
 
     public String getContent() {
         return content;
@@ -74,7 +62,6 @@ public class Comment extends BaseEntity implements Serializable {
         return "Comment{" +
                 "id='" + getId() + '\'' +
                 "author='" + author + '\'' +
-                ", date=" + date +
                 ", content='" + content + '\'' +
                 ", news=" + news +
                 '}';
