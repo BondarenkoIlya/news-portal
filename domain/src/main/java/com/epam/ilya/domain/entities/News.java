@@ -1,5 +1,7 @@
 package com.epam.ilya.domain.entities;
 
+import com.epam.ilya.domain.converters.LocalDateConverter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -7,20 +9,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "News")
+@Table(name = "news")
 public class News extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 7450697954427244532L;
 
-    @Column(name = "TITLE")
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "\"date\"")
+    @Column(name = "author")
+    private String author;
+
+    @Column(name = "creation_date")
+    @Convert(converter = LocalDateConverter.class)
     private LocalDate date;
 
-    @Column(name = "BRIEF")
+    @Column(name = "brief")
     private String brief;
 
-    @Column(name = "CONTENT")
+    @Column(name = "content")
     private String content;
 
     @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
@@ -69,12 +75,21 @@ public class News extends BaseEntity implements Serializable {
         this.comments = comments;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     @Override
     public String toString() {
         return "News{" +
                 "id='" + getId() + '\'' +
                 "title='" + title + '\'' +
-                ", date=" + date +
+                "author='" + author + '\'' +
+                ", date=" + date + '\'' +
                 ", content='" + content + '\'' +
                 ", brief='" + brief + '\'' +
                 '}';
