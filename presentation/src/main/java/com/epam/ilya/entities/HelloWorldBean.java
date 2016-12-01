@@ -1,19 +1,37 @@
 package com.epam.ilya.entities;
 
+import com.epam.ilya.dao.exceptions.DaoException;
+import com.epam.ilya.dao.interfaces.NewsDaoLocal;
+import com.epam.ilya.domain.entities.News;
+
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
 
-@ManagedBean(name = "helloBean" , eager = true)
+@Named
+@RequestScoped
+@ManagedBean(name = "helloBean", eager = true)
 @SessionScoped
-public class HelloWorldBean {
+public class HelloWorldBean implements Serializable {
 
-    private String message;
+    private static final long serialVersionUID = -7022259557065784860L;
 
-    public String getMessage() {
-        return "Hello епта";
+    public HelloWorldBean() {
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    @Inject
+    private NewsDaoLocal newsDaoLocal;
+
+    private News news;
+
+    public News getNews() throws DaoException {
+        return newsDaoLocal.findById(1L);
+    }
+
+    public void setNews(News news) {
+        this.news = news;
     }
 }
