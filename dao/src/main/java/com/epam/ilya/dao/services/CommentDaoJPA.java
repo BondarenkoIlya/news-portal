@@ -4,9 +4,13 @@ import com.epam.ilya.dao.exceptions.DaoException;
 import com.epam.ilya.dao.interfaces.CommentDaoLocal;
 import com.epam.ilya.domain.entities.Comment;
 
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+@Stateless
+@Default
 public class CommentDaoJPA implements CommentDaoLocal {
 
     @PersistenceContext

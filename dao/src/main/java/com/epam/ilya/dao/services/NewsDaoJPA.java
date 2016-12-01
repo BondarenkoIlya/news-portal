@@ -4,10 +4,14 @@ import com.epam.ilya.dao.exceptions.DaoException;
 import com.epam.ilya.dao.interfaces.NewsDaoLocal;
 import com.epam.ilya.domain.entities.News;
 
+import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
+@Stateless
 @Default
 public class NewsDaoJPA implements NewsDaoLocal {
 
@@ -15,6 +19,13 @@ public class NewsDaoJPA implements NewsDaoLocal {
 
     @PersistenceContext
     private EntityManager manager;
+
+    @Override
+    public List<News> findAll() throws DaoException {
+        Query query = manager.createQuery("FROM news", News.class);
+        return query.getResultList();
+
+    }
 
     @Override
     public News create(News entity) throws DaoException {
