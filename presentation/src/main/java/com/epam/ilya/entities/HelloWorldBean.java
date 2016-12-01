@@ -4,15 +4,12 @@ import com.epam.ilya.dao.exceptions.DaoException;
 import com.epam.ilya.dao.interfaces.NewsDaoLocal;
 import com.epam.ilya.domain.entities.News;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
 
-@Named
-@RequestScoped
+
 @ManagedBean(name = "helloBean", eager = true)
 @SessionScoped
 public class HelloWorldBean implements Serializable {
