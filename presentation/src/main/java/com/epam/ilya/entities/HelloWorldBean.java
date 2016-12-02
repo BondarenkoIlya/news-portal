@@ -1,13 +1,14 @@
 package com.epam.ilya.entities;
 
 import com.epam.ilya.dao.exceptions.DaoException;
-import com.epam.ilya.dao.interfaces.NewsDaoLocal;
 import com.epam.ilya.domain.entities.News;
+import com.epam.ilya.api.NewsService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.io.Serializable;
+import java.util.List;
 
 
 @ManagedBean(name = "helloBean", eager = true)
@@ -20,15 +21,15 @@ public class HelloWorldBean implements Serializable {
     }
 
     @Inject
-    private NewsDaoLocal newsDaoLocal;
+    private NewsService newsService;
 
-    private News news;
+    private List<News> newsList;
 
-    public News getNews() throws DaoException {
-        return newsDaoLocal.findById(1L);
+    public List<News> getNewsList() throws DaoException {
+        return newsService.getAllNews();
     }
 
-    public void setNews(News news) {
-        this.news = news;
+    public void setNewsList(List<News> newsList) {
+        this.newsList = newsList;
     }
 }
