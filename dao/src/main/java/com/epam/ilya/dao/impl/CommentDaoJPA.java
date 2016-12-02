@@ -1,7 +1,6 @@
-package com.epam.ilya.dao.services;
+package com.epam.ilya.dao.impl;
 
-import com.epam.ilya.dao.exceptions.DaoException;
-import com.epam.ilya.dao.interfaces.CommentDaoLocal;
+import com.epam.ilya.dao.api.CommentDaoLocal;
 import com.epam.ilya.domain.entities.Comment;
 
 import javax.ejb.Stateless;
@@ -17,24 +16,24 @@ public class CommentDaoJPA implements CommentDaoLocal {
     private EntityManager manager;
 
     @Override
-    public Comment create(Comment entity) throws DaoException {
+    public Comment create(Comment entity) {
         manager.persist(entity);
         manager.flush();
         return entity;
     }
 
     @Override
-    public Comment findById(Long id) throws DaoException {
+    public Comment findById(Long id) {
         return manager.find(Comment.class, id);
     }
 
     @Override
-    public Comment update(Comment entity) throws DaoException {
+    public Comment update(Comment entity) {
         return manager.merge(entity);
     }
 
     @Override
-    public void delete(Comment entity) throws DaoException {
+    public void delete(Comment entity) {
         manager.remove(entity);
     }
 }

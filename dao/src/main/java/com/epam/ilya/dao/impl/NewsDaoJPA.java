@@ -1,7 +1,6 @@
-package com.epam.ilya.dao.services;
+package com.epam.ilya.dao.impl;
 
-import com.epam.ilya.dao.exceptions.DaoException;
-import com.epam.ilya.dao.interfaces.NewsDaoLocal;
+import com.epam.ilya.dao.api.NewsDaoLocal;
 import com.epam.ilya.domain.entities.News;
 
 import javax.ejb.Stateless;
@@ -21,31 +20,30 @@ public class NewsDaoJPA implements NewsDaoLocal {
     private EntityManager manager;
 
     @Override
-    public List<News> findAll() throws DaoException {
-        Query query = manager.createQuery("FROM news", News.class);
-        return query.getResultList();
-
+    public List<News> findAll() {
+        Query query = manager.createQuery("FROM News", News.class);
+        return (List<News>) query.getResultList();
     }
 
     @Override
-    public News create(News entity) throws DaoException {
+    public News create(News entity) {
         manager.persist(entity);
         manager.flush();
         return entity;
     }
 
     @Override
-    public News findById(Long id) throws DaoException {
+    public News findById(Long id) {
         return manager.find(News.class, id);
     }
 
     @Override
-    public News update(News entity) throws DaoException {
+    public News update(News entity) {
         return manager.merge(entity);
     }
 
     @Override
-    public void delete(News entity) throws DaoException {
+    public void delete(News entity) {
         manager.remove(entity);
     }
 }

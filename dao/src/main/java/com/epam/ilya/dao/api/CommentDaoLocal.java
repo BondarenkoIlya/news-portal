@@ -1,4 +1,4 @@
-package com.epam.ilya.dao.interfaces;
+package com.epam.ilya.dao.api;
 
 import com.epam.ilya.domain.entities.Comment;
 
