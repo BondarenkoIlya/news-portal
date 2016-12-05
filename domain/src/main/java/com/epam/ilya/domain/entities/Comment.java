@@ -2,7 +2,6 @@ package com.epam.ilya.domain.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "comments")
