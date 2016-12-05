@@ -6,7 +6,6 @@ import com.epam.ilya.domain.entities.News;
 import com.epam.ilya.impl.NewsServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
