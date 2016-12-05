@@ -1,18 +1,16 @@
 package com.epam.ilya.impl;
 
+import com.epam.ilya.api.NewsService;
 import com.epam.ilya.dao.api.CommentDaoLocal;
 import com.epam.ilya.dao.api.NewsDaoLocal;
 import com.epam.ilya.domain.entities.Comment;
 import com.epam.ilya.domain.entities.News;
-import com.epam.ilya.api.NewsService;
 
 import javax.ejb.Stateless;
-import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import java.util.List;
 
 @Stateless
-@Default
 public class NewsServiceImpl implements NewsService {
 
 

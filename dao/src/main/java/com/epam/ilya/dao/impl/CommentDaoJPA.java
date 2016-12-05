@@ -3,15 +3,14 @@ package com.epam.ilya.dao.impl;
 import com.epam.ilya.dao.api.CommentDaoLocal;
 import com.epam.ilya.domain.entities.Comment;
 
-import javax.ejb.Stateless;
-import javax.enterprise.inject.Default;
+import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-@Stateless
-@Default
+@Dependent
 public class CommentDaoJPA implements CommentDaoLocal {
 
+    private static final long serialVersionUID = 8865967294712055512L;
     @PersistenceContext
     private EntityManager manager;
 

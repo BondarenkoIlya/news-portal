@@ -3,15 +3,13 @@ package com.epam.ilya.dao.impl;
 import com.epam.ilya.dao.api.NewsDaoLocal;
 import com.epam.ilya.domain.entities.News;
 
-import javax.ejb.Stateless;
-import javax.enterprise.inject.Default;
+import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
-@Stateless
-@Default
+@Dependent
 public class NewsDaoJPA implements NewsDaoLocal {
 
     private static final long serialVersionUID = -6786071613749345605L;
