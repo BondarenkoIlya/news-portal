@@ -8,10 +8,16 @@
 </h:head>
 <h:body>
 
-    <h:dataTable value="#{newsListBean.newsList}" var="newsItem">
+    <h:dataTable value="#{newsManager.newsList}" var="newsItem">
         <h:column>
             #{newsItem}
+            <h:form>
+                <h:commandButton value="Details..." action="#{newsManager.show(newsItem)}"/>
+            </h:form>
         </h:column>
     </h:dataTable>
+    <h:form>
+        <h:commandButton value="Add news" action="news-edit?faces-redirect=true"/>
+    </h:form>
 </h:body>
 </html>
