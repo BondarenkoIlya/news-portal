@@ -3,14 +3,22 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+>
 
 View
 #{news}
-
+<h:dataTable value="#{news.comments}" var="comment">
+    #{comment}
+</h:dataTable>
 <h:form>
-    <h:commandButton value="Edit" action="#{newsManager.editNews(news)}"/>
+    <h:column>
+        <h:inputText value="#{newComment.author}"/>
+        <h:inputText value="#{newComment.content}"/>
+        <h:commandButton value="Comment" action="#{newsManager.saveComment()}"/>
+    </h:column>
+</h:form>
+<h:form>
+    <h:commandButton value="Edit" action="#{newsManager.editNews()}"/>
     <h:commandButton value="Home" action="home?faces-redirect=true"/>
 </h:form>
 </html>

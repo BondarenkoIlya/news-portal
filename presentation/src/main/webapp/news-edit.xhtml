@@ -8,10 +8,11 @@
 #{news}
 <h:form>
     <h:column>
-        <h:inputText value="#{news.title}"/>
+        <h:inputText value="#{news.title}" />
         <h:inputText value="#{news.brief}"/>
         <h:inputText value="#{news.content}"/>
-        <h:commandButton action="#{newsManager.saveNews(news)}"/>
+        <h:inputText value="#{news.author}"/>
+        <h:commandButton value="Save" action="#{newsManager.saveNews()}"/>
     </h:column>
 </h:form>
 </html>

@@ -1,19 +1,20 @@
 package com.epam.ilya.entities;
 
 import com.epam.ilya.api.NewsService;
+import com.epam.ilya.domain.entities.Comment;
 import com.epam.ilya.domain.entities.News;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class NewsManager implements Serializable {
 
     private static final long serialVersionUID = -3141474265953868096L;
@@ -26,19 +27,22 @@ public class NewsManager implements Serializable {
 
     private News news;
 
+    private Comment newComment;
+
     @Produces
     @Named
-    @RequestScoped
     public News getNews() {
         return news;
     }
 
+    @Produces
+    @Named
+    public Comment getNewComment() {
+        return newComment;
+    }
+
     @PostConstruct
     public void init() {
-        this.news = (News) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("news");
-        if (news == null) {
-            this.news = new News();
-        }
     }
 
     public List<News> getNewsList() {
@@ -46,23 +50,41 @@ public class NewsManager implements Serializable {
     }
 
     public String show(News news) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.getExternalContext().getFlash().putNow("news", news);
+        this.news = news;
         return NEWS_VIEW;
     }
 
-    public String editNews(News news) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.getExternalContext().getFlash().putNow("news", news);
+    public String editNews() {
         return NEWS_EDIT;
     }
 
-    public String saveNews(News news) {
+    public String saveNews() {
+        if (news.getId() == null) {
+            newsService.createNews(news);
+        }else {
+            newsService.updateNews(news);
+        }
+        return NEWS_VIEW;
+    }
 
+    public String addNews(){
+        this.news = new News();
+        news.setDate(LocalDate.now());//temporary for manual test
+        return NEWS_EDIT;
+    }
+
+    public String saveComment() {
+        newComment.setNews(news);
+        newsService.createComment(newComment);
+        this.newComment = new Comment();
         return NEWS_VIEW;
     }
 
     public void setNews(News news) {
         this.news = news;
+    }
+
+    public void setNewComment(Comment newComment) {
+        this.newComment = newComment;
     }
 }
