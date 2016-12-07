@@ -16,5 +16,7 @@ public interface NewsService {
 
     void createNews(News news);
 
+    void createComment(Comment comment);
+
     void deleteComment(Comment comment);
 }

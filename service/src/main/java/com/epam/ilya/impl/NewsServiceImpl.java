@@ -52,6 +52,11 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
+    public void createComment(Comment comment) {
+        commentDaoLocal.create(comment);
+    }
+
+    @Override
     public void deleteComment(Comment comment) {
         commentDaoLocal.delete(comment);
     }
