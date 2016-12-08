@@ -1,11 +1,13 @@
 package com.epam.ilya.dao.impl;
 
 import com.epam.ilya.dao.api.CommentDaoLocal;
+import com.epam.ilya.dao.exceptions.DaoException;
 import com.epam.ilya.domain.entities.Comment;
 
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 
 @Dependent
 public class CommentDaoJPA implements CommentDaoLocal {
@@ -15,8 +17,12 @@ public class CommentDaoJPA implements CommentDaoLocal {
     private EntityManager manager;
 
     @Override
-    public Comment create(Comment entity) {
-        manager.persist(entity);
+    public Comment create(Comment entity) throws DaoException {
+        try {
+            manager.persist(entity);
+        } catch (PersistenceException e) {
+            throw new DaoException("Not enough information for persist comment", e);
+        }
         manager.flush();
         return entity;
     }
@@ -33,6 +39,7 @@ public class CommentDaoJPA implements CommentDaoLocal {
 
     @Override
     public void delete(Comment entity) {
-        manager.remove(entity);
+        manager.remove(manager.contains(entity) ? entity : manager.merge(entity));
+        manager.flush();
     }
 }

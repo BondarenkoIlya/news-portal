@@ -1,12 +1,13 @@
 package com.epam.ilya.dao.impl;
 
 import com.epam.ilya.dao.api.NewsDaoLocal;
+import com.epam.ilya.dao.exceptions.DaoException;
 import com.epam.ilya.domain.entities.News;
 
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.PersistenceException;
 import java.util.List;
 
 @Dependent
@@ -19,20 +20,27 @@ public class NewsDaoJPA implements NewsDaoLocal {
 
     @Override
     public List<News> findAll() {
-        Query query = manager.createQuery("FROM News", News.class);
-        return (List<News>) query.getResultList();
+        return manager.createQuery("FROM News", News.class).getResultList();
     }
 
     @Override
-    public News create(News entity) {
-        manager.persist(entity);
+    public News create(News entity) throws DaoException {
+        try {
+            manager.persist(entity);
+        } catch (PersistenceException e) {
+            throw new DaoException("Not enough information for persist news", e);
+        }
         manager.flush();
         return entity;
     }
 
     @Override
-    public News findById(Long id) {
-        return manager.find(News.class, id);
+    public News findById(Long id) throws DaoException {
+        News news = manager.find(News.class, id);
+        if (news == null) {
+            throw new DaoException("Cannot find news by id" + id);
+        }
+        return news;
     }
 
     @Override
@@ -42,6 +50,6 @@ public class NewsDaoJPA implements NewsDaoLocal {
 
     @Override
     public void delete(News entity) {
-        manager.remove(entity);
+        manager.remove(manager.contains(entity) ? entity : manager.merge(entity));
     }
 }

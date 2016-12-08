@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface NewsDaoLocal extends Dao<News> {
 
-    List findAll();
+    List<News> findAll();
 }
