@@ -29,7 +29,7 @@ public class News extends BaseEntity implements Serializable {
     @Column(name = "content")
     private String content;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "news", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "news", cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
 
     public News() {

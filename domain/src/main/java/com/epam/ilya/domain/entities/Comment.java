@@ -19,7 +19,7 @@ public class Comment extends BaseEntity implements Serializable {
     private News news;
 
     @Column(name = "news_id")
-    private int newsId;
+    private Long newsId;
 
     public Comment() {
     }
@@ -48,11 +48,11 @@ public class Comment extends BaseEntity implements Serializable {
         this.content = content;
     }
 
-    public int getNewsId() {
+    public Long getNewsId() {
         return newsId;
     }
 
-    public void setNewsId(int newsId) {
+    public void setNewsId(Long newsId) {
         this.newsId = newsId;
     }
 
