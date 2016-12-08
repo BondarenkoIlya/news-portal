@@ -8,7 +8,12 @@
 View
 #{news}
 <h:dataTable value="#{news.comments}" var="comment">
-    #{comment}
+    <h:column>
+        #{comment}
+        <h:form>
+            <h:commandButton value="Delete comment" action="#{newsManager.deleteComment(comment)}"/>
+        </h:form>
+    </h:column>
 </h:dataTable>
 <h:form>
     <h:column>
@@ -18,7 +23,8 @@ View
     </h:column>
 </h:form>
 <h:form>
-    <h:commandButton value="Edit" action="#{newsManager.editNews()}"/>
+    <h:commandButton value="Edit" action="#{newsManager.editNews(news)}"/>
+    <h:commandButton value="Delete news" action="#{newsManager.deleteNews(news)}"/>
     <h:commandButton value="Home" action="home?faces-redirect=true"/>
 </h:form>
 </html>

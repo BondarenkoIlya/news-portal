@@ -12,7 +12,7 @@
         <h:inputText value="#{news.brief}"/>
         <h:inputText value="#{news.content}"/>
         <h:inputText value="#{news.author}"/>
-        <h:commandButton value="Save" action="#{newsManager.saveNews()}"/>
+        <h:commandButton value="Save" action="#{newsManager.saveNews(news)}"/>
     </h:column>
 </h:form>
 </html>
