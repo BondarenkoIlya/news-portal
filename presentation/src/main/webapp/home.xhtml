@@ -6,11 +6,17 @@
 <h:head>
     <title>News</title>
 </h:head>
-<h:body>
 
+<h:body>
+    News:
     <h:dataTable value="#{newsManager.newsList}" var="newsItem">
         <h:column>
-            #{newsItem}
+            Title:<br/>
+            #{newsItem.title}<br/>
+            Brief:<br/>
+            #{newsItem.brief}<br/>
+            Author:<br/>
+            #{newsItem.author}<br/>
             <h:form>
                 <h:commandButton value="Details..." action="#{newsManager.show(newsItem)}"/>
             </h:form>

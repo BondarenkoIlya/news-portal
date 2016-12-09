@@ -4,14 +4,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
 >
-
-#{news}
 <h:form>
     <h:column>
-        <h:inputText value="#{news.title}" />
-        <h:inputText value="#{news.brief}"/>
-        <h:inputText value="#{news.content}"/>
-        <h:inputText value="#{news.author}"/>
+        <h:outputLabel for="title" value="Title"/><br/>
+        <h:inputText id="title" value="#{news.title}" /><br/>
+        <h:outputLabel for="brief" value="Brief"/><br/>
+        <h:inputText id="brief" value="#{news.brief}"/><br/>
+        <h:outputLabel for="content" value="Content"/><br/>
+        <h:inputText id="content" value="#{news.content}"/><br/>
+        <h:outputLabel for="author" value="Author"/><br/>
+        <h:inputText id="author" value="#{news.author}"/><br/>
         <h:commandButton value="Save" action="#{newsManager.saveNews(news)}"/>
     </h:column>
 </h:form>

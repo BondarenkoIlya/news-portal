@@ -5,11 +5,23 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
 >
 
-View
-#{news}
-<h:dataTable value="#{news.comments}" var="comment">
+View<br/>
+Title<br/>
+#{news.title}<br/>
+Date<br/>
+#{news.date}<br/>
+Author<br/>
+#{news.author}<br/>
+Brief<br/>
+#{news.brief}<br/>
+Content<br/>
+#{news.content}<br/>
+<h:dataTable value="#{news.comments}" var="comment"><br/>
     <h:column>
-        #{comment}
+        Author:<br/>
+        #{comment.author}<br/>
+        Comment:<br/>
+        #{comment.content}<br/>
         <h:form>
             <h:commandButton value="Delete comment" action="#{newsManager.deleteComment(comment)}"/>
         </h:form>
@@ -17,8 +29,10 @@ View
 </h:dataTable>
 <h:form>
     <h:column>
-        <h:inputText value="#{newComment.author}"/>
-        <h:inputText value="#{newComment.content}"/>
+        <h:outputLabel for="author" value="Author:"/>
+        <h:inputText id="author" value="#{newComment.author}"/>
+        <h:outputLabel for="content" value="Comment:"/>
+        <h:inputText id="content" value="#{newComment.content}"/>
         <h:commandButton value="Comment" action="#{newsManager.saveComment()}"/>
     </h:column>
 </h:form>
