@@ -2,26 +2,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+>
 <h:head>
     <title>News</title>
 </h:head>
-
 <h:body>
     News:
-    <h:dataTable value="#{newsManager.newsList}" var="newsItem">
-        <h:column>
-            Title:<br/>
-            #{newsItem.title}<br/>
-            Brief:<br/>
-            #{newsItem.brief}<br/>
-            Author:<br/>
-            #{newsItem.author}<br/>
+    <p:dataTable value="#{newsManager.newsList}" var="newsItem">
+        <p:column>
+
+            <h:outputLabel for="title" value="Title:"/><br/>
+            <h:outputText value="#{newsItem.title}" id="title"/><br/>
+
+            <h:outputLabel for="brief" value="Brief:"/><br/>
+            <h:outputText value="#{newsItem.brief}" id="brief"/><br/>
+
+            <h:outputLabel for="author" value="Author:"/><br/>
+            <h:outputText value="#{newsItem.author}" id="author"/><br/>
+
             <h:form>
                 <h:commandButton value="Details..." action="#{newsManager.show(newsItem)}"/>
             </h:form>
-        </h:column>
-    </h:dataTable>
+        </p:column>
+    </p:dataTable>
+
     <h:form>
         <h:commandButton value="Add news" action="#{newsManager.addNews()}"/>
     </h:form>
