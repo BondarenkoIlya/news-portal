@@ -8,16 +8,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-@Named
-@SessionScoped
+@ManagedBean
+@RequestScoped
 public class NewsManager implements Serializable {
     private static final Logger LOGGER = LoggerFactory.getLogger(NewsManager.class);
 
@@ -48,6 +50,10 @@ public class NewsManager implements Serializable {
 
     @PostConstruct
     public void init() {
+        this.news = (News) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("news");
+        if (news == null) {
+            this.news = new News();
+        }
     }
 
     public List<News> getNewsList() {
@@ -57,6 +63,8 @@ public class NewsManager implements Serializable {
     public String show(News news) {//cope paste , read referrer
         try {
             this.news = newsService.findById(news.getId());
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getSessionMap().put("news", news);
         } catch (ServiceException e) {
             LOGGER.warn("Cannot find news by id " + news.getId(), e);
             return HOME;
@@ -93,6 +101,7 @@ public class NewsManager implements Serializable {
 
     public String addNews() {
         this.news = new News();
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("news");
         news.setDate(LocalDate.now());//temporary for manual test
         return NEWS_EDIT;
     }
