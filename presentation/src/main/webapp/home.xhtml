@@ -8,7 +8,7 @@
     <title>News</title>
 </h:head>
 <h:body>
-    News:
+    <p:outputLabel value="News:"/>
     <p:dataTable value="#{newsManager.newsList}" var="newsItem">
         <p:column>
 
@@ -22,13 +22,13 @@
             <h:outputText value="#{newsItem.author}" id="author"/><br/>
 
             <h:form>
-                <h:commandButton value="Details..." action="#{newsManager.show(newsItem)}"/>
+                <p:commandButton value="Details..." action="#{newsManager.show(newsItem)}"/>
             </h:form>
         </p:column>
     </p:dataTable>
 
     <h:form>
-        <h:commandButton value="Add news" action="#{newsManager.addNews()}"/>
+        <p:commandButton value="Add news" action="#{newsManager.addNews()}"/>
     </h:form>
 </h:body>
 </html>
