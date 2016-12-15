@@ -90,7 +90,6 @@ public class NewsManager implements Serializable {
     public String saveNews(News news) {
         if (news.getId() == null) {
             try {
-                news.setDate(LocalDate.now());//temporary for manual test
                 newsService.createNews(news);
             } catch (ServiceException e) {
                 LOGGER.error("Cannot create new news", e);

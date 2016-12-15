@@ -8,7 +8,6 @@
     <title>News</title>
 </h:head>
 <h:body>
-
     <p:column>
         <p:outputLabel for="title" value="Title:"/><br/>
         <h:outputText value="#{newsManager.news.title}" id="title"/><br/>
@@ -39,26 +38,32 @@
         </p:toolbar>
     </h:form>
     <p:outputLabel value="Comments:"/><br/>
-    <h:dataTable value="#{newsManager.news.comments}" var="comment"><br/>
-        <h:column>
-            <h:outputLabel for="cAuthor" value="Author:"/><br/>
-            <h:outputText value="#{comment.author}" id="cAuthor"/>
+    <h:dataTable value="#{newsManager.news.comments}" var="comment">
+        <p:column>
+            <p:outputLabel for="cAuthor" value="Author:"/><br/>
+            <h:outputText value="#{comment.author}" id="cAuthor"/><br/>
 
-            <h:outputLabel for="cContent" value="Content:"/><br/>
-            <h:outputText value="#{comment.content}" id="cContent"/>
+            <p:outputLabel for="cContent" value="Content:"/><br/>
+            <h:outputText value="#{comment.content}" id="cContent"/><br/>
+
             <h:form>
                 <p:commandButton title="Delete comment" icon="ui-icon-trash" action="#{newsManager.deleteComment(comment)}"/>
             </h:form>
-        </h:column>
+        </p:column>
     </h:dataTable>
     <h:form>
-        <h:column>
-            <h:outputLabel for="author" value="Author:"/>
-            <h:inputText id="author" value="#{newsManager.newComment.author}"/>
-            <h:outputLabel for="content" value="Comment:"/>
-            <h:inputText id="content" value="#{newsManager.newComment.content}"/>
+        <p:messages autoUpdate="true"/>
+        <p:column>
+            <p:outputLabel for="NCauthor" value="Author:"/><br/>
+            <p:inputText id="NCauthor" value="#{newsManager.newComment.author}"/><br/>
+            <p:message for="NCauthor"/>
+
+            <p:outputLabel for="NCcontent" value="Comment:"/><br/>
+            <p:inputText id="NCcontent" value="#{newsManager.newComment.content}"/><br/>
+            <p:message for="NCcontent"/>
+
             <p:commandButton value="Comment" action="#{newsManager.saveComment()}"/>
-        </h:column>
+        </p:column>
     </h:form>
 </h:body>
 </html>
