@@ -1,6 +1,7 @@
 package com.epam.ilya.domain.entities;
 
 import com.epam.ilya.domain.converters.LocalDateConverter;
+import com.epam.ilya.domain.validation.annotation.NotAfterNow;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -25,6 +26,8 @@ public class News extends BaseEntity implements Serializable {
     @Column(name = "author")
     private String author;
 
+    @NotNull
+    @NotAfterNow
     @Column(name = "creation_date")
     @Convert(converter = LocalDateConverter.class)
     private LocalDate date;
