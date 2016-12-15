@@ -50,9 +50,15 @@ public class NewsManager implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.news = (News) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("news");
-        if (news == null) {
+        News sessionNews = (News) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("news");
+        if (sessionNews == null) {
             this.news = new News();
+        } else {
+            try {
+                this.news = newsService.findById(sessionNews.getId());
+            } catch (ServiceException e) {
+                LOGGER.warn("News have been deleted.",e);
+            }
         }
     }
 
@@ -63,8 +69,7 @@ public class NewsManager implements Serializable {
     public String show(News news) {//cope paste , read referrer
         try {
             this.news = newsService.findById(news.getId());
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.getExternalContext().getSessionMap().put("news", news);
+            putNewsInSession(news);
         } catch (ServiceException e) {
             LOGGER.warn("Cannot find news by id " + news.getId(), e);
             return HOME;
@@ -85,6 +90,7 @@ public class NewsManager implements Serializable {
     public String saveNews(News news) {
         if (news.getId() == null) {
             try {
+                news.setDate(LocalDate.now());//temporary for manual test
                 newsService.createNews(news);
             } catch (ServiceException e) {
                 LOGGER.error("Cannot create new news", e);
@@ -96,29 +102,30 @@ public class NewsManager implements Serializable {
                 LOGGER.warn("Cannot update news", e);
             }
         }
+        putNewsInSession(news);
         return NEWS_VIEW;
     }
 
     public String addNews() {
         this.news = new News();
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("news");
-        news.setDate(LocalDate.now());//temporary for manual test
+        eraseSession();
         return NEWS_EDIT;
+    }
+
+    public String deleteNews(News news) {
+        newsService.deleteNews(news);
+        eraseSession();
+        return HOME;
     }
 
     public String saveComment() {
         try {
             this.news = newsService.createCommentForNews(newComment, news);
+            putNewsInSession(news);
         } catch (ServiceException e) {
             LOGGER.warn("Cannot create comment", e);
         }
-        this.newComment = new Comment();
         return NEWS_VIEW;
-    }
-
-    public String deleteNews(News news) {
-        newsService.deleteNews(news);
-        return HOME;
     }
 
     public String deleteComment(Comment comment) {
@@ -131,6 +138,14 @@ public class NewsManager implements Serializable {
         return NEWS_VIEW;
     }
 
+    private void eraseSession() {
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("news");
+    }
+
+    private void putNewsInSession(News news) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().put("news", news);
+    }
 
     public void setNews(News news) {
         this.news = news;
