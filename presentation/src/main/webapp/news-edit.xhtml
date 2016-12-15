@@ -11,18 +11,18 @@
     <h:form>
         <p:column>
             <p:outputLabel for="title" value="Title"/><br/>
-            <p:inputText id="title" value="#{news.title}"/><br/>
+            <p:inputText id="title" value="#{newsManager.news.title}"/><br/>
 
             <p:outputLabel for="brief" value="Brief"/><br/>
-            <p:inputText id="brief" value="#{news.brief}"/><br/>
+            <p:inputText id="brief" value="#{newsManager.news.brief}"/><br/>
 
             <p:outputLabel for="content" value="Content"/><br/>
-            <p:inputText id="content" value="#{news.content}"/><br/>
+            <p:inputText id="content" value="#{newsManager.news.content}"/><br/>
 
             <p:outputLabel for="author" value="Author"/><br/>
-            <p:inputText id="author" value="#{news.author}"/><br/>
+            <p:inputText id="author" value="#{newsManager.news.author}"/><br/>
 
-            <p:commandButton value="Save" action="#{newsManager.saveNews(news)}"/>
+            <p:commandButton value="Save" action="#{newsManager.saveNews(newsManager.news)}"/>
         </p:column>
     </h:form>
 </h:body>
