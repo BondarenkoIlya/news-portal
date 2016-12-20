@@ -15,26 +15,26 @@
         <p:messages autoUpdate="true"/>
 
         <h:panelGrid columns="2" cellpadding="5">
-            <p:outputLabel for="title" value="Title"/><br/>
+            <p:outputLabel for="title" value="#{message['news.title']}"/><br/>
             <p:inputText id="title" value="#{newsManager.news.title}"/><br/>
 
-            <p:outputLabel for="brief" value="Brief"/><br/>
+            <p:outputLabel for="brief" value="#{message['news.brief']}"/><br/>
             <p:inputText id="brief" value="#{newsManager.news.brief}"/><br/>
 
-            <p:outputLabel for="date" value="Date"/><br/>
+            <p:outputLabel for="date" value="#{message['news.date']}"/><br/>
             <p:inputText id="date" value="#{newsManager.news.date}"
                          pattern="dd/MM/yyyy" mask="true">
                 <f:converter converterId="localDateFacesConverter"/>
             </p:inputText><br/>
             <p:message for="date"/><br/>
 
-            <p:outputLabel for="content" value="Content"/><br/>
+            <p:outputLabel for="content" value="#{message['news.content']}"/><br/>
             <p:inputText id="content" value="#{newsManager.news.content}"/><br/>
 
-            <p:outputLabel for="author" value="Author"/><br/>
+            <p:outputLabel for="author" value="#{message['news.author']}"/><br/>
             <p:inputText id="author" value="#{newsManager.news.author}"/><br/>
 
-            <p:commandButton value="Save" action="#{newsManager.saveNews(newsManager.news)}"/>
+            <p:commandButton value="#{message['news.edit.button']}" action="#{newsManager.saveNews(newsManager.news)}"/>
         </h:panelGrid>
     </h:form>
 </h:body>

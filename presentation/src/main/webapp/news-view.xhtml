@@ -7,49 +7,49 @@
 >
 <f:view locale="#{language.locale}"/>
 <h:head>
-    <title>News</title>
+    <title>#{message['annual.news']}</title>
 </h:head>
 <h:body>
     <p:column>
         <p:outputLabel for="title" value="#{message['news.title']}"/><br/>
         <h:outputText value="#{newsManager.news.title}" id="title"/><br/>
 
-        <p:outputLabel for="brief" value="Brief:"/><br/>
+        <p:outputLabel for="brief" value="#{message['news.brief']}"/><br/>
         <h:outputText value="#{newsManager.news.brief}" id="brief"/><br/>
 
-        <p:outputLabel for="author" value="Author:"/><br/>
+        <p:outputLabel for="author" value="#{message['news.author']}"/><br/>
         <h:outputText value="#{newsManager.news.author}" id="author"/><br/>
 
-        <p:outputLabel for="date" value="Date:"/><br/>
+        <p:outputLabel for="date" value="#{message['news.date']}"/><br/>
         <h:outputText value="#{newsManager.news.date}" id="date"/><br/>
 
-        <p:outputLabel for="content" value="Content:"/><br/>
+        <p:outputLabel for="content" value="#{message['news.content']}"/><br/>
         <h:outputText value="#{newsManager.news.content}" id="content"/><br/>
     </p:column>
     <h:form>
         <p:toolbar>
             <f:facet name="left">
-                <p:commandButton title="Delete" icon="ui-icon-trash"
+                <p:commandButton title="#{message['news.delete']}" icon="ui-icon-trash"
                                  action="#{newsManager.deleteNews(news)}"/>
-                <p:commandButton title="Edit" icon="ui-icon-pencil" action="#{newsManager.editNews(news)}"/>
+                <p:commandButton title="#{message['news.edition']}" icon="ui-icon-pencil" action="#{newsManager.editNews(news)}"/>
             </f:facet>
             <f:facet name="right">
-                <p:commandButton value="New" icon="ui-icon-document" action="#{newsManager.addNews()}"/>
-                <p:commandButton value="Home" action="home?faces-redirect=true"/>
+                <p:commandButton value="#{message['leftbar.link.news.new']}" icon="ui-icon-document" action="#{newsManager.addNews()}"/>
+                <p:commandButton value="#{message['leftbar.link.news.list']}" action="home?faces-redirect=true"/>
             </f:facet>
         </p:toolbar>
     </h:form>
-    <p:outputLabel value="Comments:"/><br/>
+    <p:outputLabel value="#{message['comments']}:"/><br/>
     <h:dataTable value="#{newsManager.news.comments}" var="comment">
         <p:column>
-            <p:outputLabel for="cAuthor" value="Author:"/><br/>
+            <p:outputLabel for="cAuthor" value="#{message['comment.author']}"/><br/>
             <h:outputText value="#{comment.author}" id="cAuthor"/><br/>
 
-            <p:outputLabel for="cContent" value="Content:"/><br/>
+            <p:outputLabel for="cContent" value="#{message['comment.content']}"/><br/>
             <h:outputText value="#{comment.content}" id="cContent"/><br/>
 
             <h:form>
-                <p:commandButton title="Delete comment" icon="ui-icon-trash"
+                <p:commandButton title="#{message['comment.delete']}" icon="ui-icon-trash"
                                  action="#{newsManager.deleteComment(comment)}"/>
             </h:form>
         </p:column>
@@ -57,15 +57,15 @@
     <h:form>
         <p:messages autoUpdate="true"/>
         <p:column>
-            <p:outputLabel for="NCauthor" value="Author:"/><br/>
+            <p:outputLabel for="NCauthor" value="#{message['comment.author']}"/><br/>
             <p:inputText id="NCauthor" value="#{newsManager.newComment.author}"/><br/>
             <p:message for="NCauthor"/>
 
-            <p:outputLabel for="NCcontent" value="Comment:"/><br/>
+            <p:outputLabel for="NCcontent" value="#{message['comment.content']}"/><br/>
             <p:inputText id="NCcontent" value="#{newsManager.newComment.content}"/><br/>
             <p:message for="NCcontent"/>
 
-            <p:commandButton value="Comment" action="#{newsManager.saveComment()}"/>
+            <p:commandButton value="#{message['comment.new']}" action="#{newsManager.saveComment()}"/>
         </p:column>
     </h:form>
 </h:body>
