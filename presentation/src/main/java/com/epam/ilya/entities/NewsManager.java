@@ -15,7 +15,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.List;
 
 @ManagedBean
@@ -57,7 +56,7 @@ public class NewsManager implements Serializable {
             try {
                 this.news = newsService.findById(sessionNews.getId());
             } catch (ServiceException e) {
-                LOGGER.warn("News have been deleted.",e);
+                LOGGER.warn("News have been deleted.", e);
             }
         }
     }
