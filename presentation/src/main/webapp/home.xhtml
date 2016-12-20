@@ -1,34 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+<html lang="#{language.language}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
 >
+<f:view locale="#{language.locale}"/>
 <h:head>
     <title>News</title>
 </h:head>
 <h:body>
-    <p:outputLabel value="News:"/>
+    <h:form>
+        <h:selectOneMenu value="#{language.language}" onchange="submit()">
+            <f:selectItem itemValue="en" itemLabel="English"/>
+            <f:selectItem itemValue="ru" itemLabel="Russian"/>
+            <f:selectItem itemValue="fr" itemLabel="French"/>
+        </h:selectOneMenu>
+    </h:form>
+    <p:outputLabel value="#{message['news.list']}"/>
     <p:dataTable value="#{newsManager.newsList}" var="newsItem">
         <p:column>
 
-            <h:outputLabel for="title" value="Title:"/><br/>
+            <h:outputLabel for="title" value="#{message['news.title']}"/><br/>
             <h:outputText value="#{newsItem.title}" id="title"/><br/>
 
-            <h:outputLabel for="brief" value="Brief:"/><br/>
+            <h:outputLabel for="brief" value="#{message['news.brief']}"/><br/>
             <h:outputText value="#{newsItem.brief}" id="brief"/><br/>
 
-            <h:outputLabel for="author" value="Author:"/><br/>
+            <h:outputLabel for="author" value="#{message['news.author']}"/><br/>
             <h:outputText value="#{newsItem.author}" id="author"/><br/>
 
             <h:form>
-                <p:commandButton value="Details..." action="#{newsManager.show(newsItem)}"/>
+                <p:commandButton value="#{message['news.list.detail']}" action="#{newsManager.show(newsItem)}"/>
             </h:form>
         </p:column>
     </p:dataTable>
 
     <h:form>
-        <p:commandButton value="Add news" action="#{newsManager.addNews()}"/>
+        <p:commandButton value="#{message['leftbar.link.news.new']}" action="#{newsManager.addNews()}"/>
     </h:form>
 </h:body>
 </html>
