@@ -10,7 +10,6 @@ import com.epam.ilya.exception.ServiceException;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.List;
 
 @Stateless
@@ -53,7 +52,7 @@ public class NewsServiceImpl implements NewsService {
         try {
             newsDaoLocal.findById(news.getId());
         } catch (DaoException e) {
-            throw new ServiceException("Cannot update nonexistent news",e);
+            throw new ServiceException("Cannot update nonexistent news", e);
         }
         return newsDaoLocal.update(news);
     }
@@ -63,7 +62,7 @@ public class NewsServiceImpl implements NewsService {
         try {
             newsDaoLocal.create(news);
         } catch (DaoException e) {
-            throw new ServiceException("Cannot create news",e);
+            throw new ServiceException("Cannot create news", e);
         }
     }
 
@@ -75,7 +74,7 @@ public class NewsServiceImpl implements NewsService {
             commentDaoLocal.create(comment);
             newNews = newsDaoLocal.findById(news.getId());
         } catch (DaoException e) {
-            throw new ServiceException("Cannot find comment's news. News doesn't exist",e);
+            throw new ServiceException("Cannot find comment's news. News doesn't exist", e);
         }
         return newNews;
     }
@@ -86,10 +85,21 @@ public class NewsServiceImpl implements NewsService {
         news.getComments().remove(comment);
         commentDaoLocal.delete(comment);
         try {
-           updatedNews= newsDaoLocal.findById(news.getId());
+            updatedNews = newsDaoLocal.findById(news.getId());
         } catch (DaoException e) {
-            throw new ServiceException("Cannot find deleting comment's news",e);
+            throw new ServiceException("Cannot find deleting comment's news", e);
         }
         return updatedNews;
+    }
+
+    @Override
+    public List<News> getPaginatedList(int pageNumber, int pageSize) {
+        return newsDaoLocal.getPaginatedList(pageNumber, pageSize);
+    }
+
+    @Override
+    public int newsPageCountForPageSize(int pageSize) {
+        long countResult = newsDaoLocal.newsCount();
+        return (int) ((countResult / pageSize) + 1);
     }
 }
