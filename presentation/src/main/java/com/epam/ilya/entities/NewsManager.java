@@ -61,10 +61,6 @@ public class NewsManager implements Serializable {
         }
     }
 
-    public List<News> getNewsList() {
-        return newsService.getAllNews();
-    }
-
     public String show(News news) {//cope paste , read referrer
         try {
             this.news = newsService.findById(news.getId());
