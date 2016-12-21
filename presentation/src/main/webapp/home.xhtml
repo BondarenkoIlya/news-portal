@@ -18,24 +18,27 @@
         </h:selectOneMenu>
     </h:form>
     <p:outputLabel value="#{message['news.list']}"/>
-    <p:dataTable value="#{newsManager.newsList}" var="newsItem">
-        <p:column>
+    <h:form>
+        <p:dataTable value="#{newsManager.newsList}" var="newsItem" paginator="true" rows="3"
+                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                     rowsPerPageTemplate="3,6,9" id="carTable">
+            <p:column>
 
-            <h:outputLabel for="title" value="#{message['news.title']}"/><br/>
-            <h:outputText value="#{newsItem.title}" id="title"/><br/>
+                <h:outputLabel for="title" value="#{message['news.title']}"/><br/>
+                <h:outputText value="#{newsItem.title}" id="title"/><br/>
 
-            <h:outputLabel for="brief" value="#{message['news.brief']}"/><br/>
-            <h:outputText value="#{newsItem.brief}" id="brief"/><br/>
+                <h:outputLabel for="brief" value="#{message['news.brief']}"/><br/>
+                <h:outputText value="#{newsItem.brief}" id="brief"/><br/>
 
-            <h:outputLabel for="author" value="#{message['news.author']}"/><br/>
-            <h:outputText value="#{newsItem.author}" id="author"/><br/>
+                <h:outputLabel for="author" value="#{message['news.author']}"/><br/>
+                <h:outputText value="#{newsItem.author}" id="author"/><br/>
 
-            <h:form>
-                <p:commandButton value="#{message['news.list.detail']}" action="#{newsManager.show(newsItem)}"/>
-            </h:form>
-        </p:column>
-    </p:dataTable>
-
+                <h:form>
+                    <p:commandButton value="#{message['news.list.detail']}" action="#{newsManager.show(newsItem)}"/>
+                </h:form>
+            </p:column>
+        </p:dataTable>
+    </h:form>
     <h:form>
         <p:commandButton value="#{message['leftbar.link.news.new']}" action="#{newsManager.addNews()}"/>
     </h:form>
