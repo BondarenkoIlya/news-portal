@@ -19,9 +19,7 @@
     </h:form>
     <p:outputLabel value="#{message['news.list']}"/>
     <h:form>
-        <p:dataTable value="#{newsManager.newsList}" var="newsItem" paginator="true" rows="3"
-                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                     rowsPerPageTemplate="3,6,9" id="carTable">
+        <p:dataTable value="#{listManager.paginatedList}" var="newsItem">
             <p:column>
 
                 <h:outputLabel for="title" value="#{message['news.title']}"/><br/>
@@ -38,6 +36,21 @@
                 </h:form>
             </p:column>
         </p:dataTable>
+    </h:form>
+    <h:form>
+        <h:selectOneMenu value="#{listManager.pageSize}" onchange="submit()">
+            <f:selectItem itemValue="3" itemLabel="3"/>
+            <f:selectItem itemValue="6" itemLabel="6"/>
+            <f:selectItem itemValue="9" itemLabel="9"/>
+        </h:selectOneMenu>
+        <p:column>
+            <p:commandButton icon="ui-icon-circle-triangle-w" title="#{message['news.list.pages.previous']}"
+                             action="#{listManager.previousPage}"/>
+            <h:outputLabel for="pageCount" value="#{listManager.pageNumber}/"/>
+            <h:outputText value="#{listManager.pageCount}" id="pageCount"/><br/>
+            <p:commandButton icon="ui-icon-circle-triangle-e" title="#{message['news.list.pages.next']}"
+                             action="#{listManager.nextPage}"/>
+        </p:column>
     </h:form>
     <h:form>
         <p:commandButton value="#{message['leftbar.link.news.new']}" action="#{newsManager.addNews()}"/>
