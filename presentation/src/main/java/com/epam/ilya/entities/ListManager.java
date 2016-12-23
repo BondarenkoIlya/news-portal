@@ -30,7 +30,11 @@ public class ListManager {
     }
 
     public List<News> getPaginatedList() {
-        return newsService.getPaginatedList(pageNumber, pageSize);
+        if (pageNumber > pageCount) {
+            pageNumber = DEFAULT_PAGE_NUMBER;
+        }
+        List<News> newses = newsService.getPaginatedList(pageNumber, pageSize);
+        return newses ;
     }
 
     public int getPageCount() {

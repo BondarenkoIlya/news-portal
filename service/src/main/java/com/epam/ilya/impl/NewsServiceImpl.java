@@ -100,6 +100,12 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public int newsPageCountForPageSize(int pageSize) {
         long countResult = newsDaoLocal.newsCount();
-        return (int) ((countResult / pageSize) + 1);
+        int pageCount;
+        if (countResult % pageSize == 0) {
+            pageCount = (int) (countResult / pageSize);
+        }else {
+            pageCount = (int) ((countResult / pageSize) + 1);
+        }
+        return pageCount;
     }
 }

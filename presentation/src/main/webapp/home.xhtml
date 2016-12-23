@@ -31,9 +31,9 @@
                 <h:outputLabel for="author" value="#{message['news.author']}"/><br/>
                 <h:outputText value="#{newsItem.author}" id="author"/><br/>
 
-                <h:form>
-                    <p:commandButton value="#{message['news.list.detail']}" action="#{newsManager.show(newsItem)}"/>
-                </h:form>
+
+                <p:commandButton value="#{message['news.list.detail']}" action="#{newsManager.show(newsItem)}"/>
+
             </p:column>
         </p:dataTable>
     </h:form>
