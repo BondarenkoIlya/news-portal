@@ -17,12 +17,12 @@ public class News extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 7450697954427244532L;
 
     @NotNull
-    @Size(min = 3,max = 400)
+    @Size(min = 3, max = 400)
     @Column(name = "title")
     private String title;
 
     @NotNull
-    @Size(min = 3,max = 100)
+    @Size(min = 3, max = 100)
     @Column(name = "author")
     private String author;
 
@@ -33,12 +33,12 @@ public class News extends BaseEntity implements Serializable {
     private LocalDate date;
 
     @NotNull
-    @Size(min = 3,max = 4000)
+    @Size(min = 3, max = 4000)
     @Column(name = "brief")
     private String brief;
 
     @NotNull
-    @Size(min = 3,max = 4000)
+    @Size(min = 3, max = 4000)
     @Column(name = "content")
     private String content;
 

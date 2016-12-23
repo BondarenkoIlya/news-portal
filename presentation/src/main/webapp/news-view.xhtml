@@ -31,10 +31,12 @@
             <f:facet name="left">
                 <p:commandButton title="#{message['news.delete']}" icon="ui-icon-trash"
                                  action="#{newsManager.deleteNews(news)}"/>
-                <p:commandButton title="#{message['news.edition']}" icon="ui-icon-pencil" action="#{newsManager.editNews(news)}"/>
+                <p:commandButton title="#{message['news.edition']}" icon="ui-icon-pencil"
+                                 action="#{newsManager.editNews(news)}"/>
             </f:facet>
             <f:facet name="right">
-                <p:commandButton value="#{message['leftbar.link.news.new']}" icon="ui-icon-document" action="#{newsManager.addNews()}"/>
+                <p:commandButton value="#{message['leftbar.link.news.new']}" icon="ui-icon-document"
+                                 action="#{newsManager.addNews()}"/>
                 <p:commandButton value="#{message['leftbar.link.news.list']}" action="home?faces-redirect=true"/>
             </f:facet>
         </p:toolbar>

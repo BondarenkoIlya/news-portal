@@ -103,7 +103,7 @@ public class NewsServiceImpl implements NewsService {
         int pageCount;
         if (countResult % pageSize == 0) {
             pageCount = (int) (countResult / pageSize);
-        }else {
+        } else {
             pageCount = (int) ((countResult / pageSize) + 1);
         }
         return pageCount;

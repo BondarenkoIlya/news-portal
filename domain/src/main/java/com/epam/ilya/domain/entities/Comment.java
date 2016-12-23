@@ -11,12 +11,12 @@ public class Comment extends BaseEntity implements Serializable {
     private static final long serialVersionUID = -5032854930770123363L;
 
     @NotNull
-    @Size(min = 3,max = 100)
+    @Size(min = 3, max = 100)
     @Column(name = "author")
     private String author;
 
     @NotNull
-    @Size(min = 3,max = 400)
+    @Size(min = 3, max = 400)
     @Column(name = "content")
     private String content;
 

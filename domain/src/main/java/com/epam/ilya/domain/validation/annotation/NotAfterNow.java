@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Target({ FIELD, METHOD, PARAMETER, ANNOTATION_TYPE })
+@Target({FIELD, METHOD, PARAMETER, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = NotAfterNowValidator.class)
 @Documented
@@ -19,8 +19,8 @@ public @interface NotAfterNow {
 
     String message() default "{err.news.date.after}";
 
-    Class<?>[] groups() default { };
+    Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default { };
+    Class<? extends Payload>[] payload() default {};
 
 }
