@@ -8,16 +8,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.List;
 
-@Named
-@SessionScoped
+@ManagedBean
+@RequestScoped
 public class NewsManager implements Serializable {
     private static final Logger LOGGER = LoggerFactory.getLogger(NewsManager.class);
 
@@ -48,15 +48,22 @@ public class NewsManager implements Serializable {
 
     @PostConstruct
     public void init() {
-    }
-
-    public List<News> getNewsList() {
-        return newsService.getAllNews();
+        News sessionNews = (News) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("news");
+        if (sessionNews == null) {
+            this.news = new News();
+        } else {
+            try {
+                this.news = newsService.findById(sessionNews.getId());
+            } catch (ServiceException e) {
+                LOGGER.warn("News have been deleted.", e);
+            }
+        }
     }
 
     public String show(News news) {//cope paste , read referrer
         try {
             this.news = newsService.findById(news.getId());
+            putNewsInSession(news);
         } catch (ServiceException e) {
             LOGGER.warn("Cannot find news by id " + news.getId(), e);
             return HOME;
@@ -88,28 +95,30 @@ public class NewsManager implements Serializable {
                 LOGGER.warn("Cannot update news", e);
             }
         }
+        putNewsInSession(news);
         return NEWS_VIEW;
     }
 
     public String addNews() {
         this.news = new News();
-        news.setDate(LocalDate.now());//temporary for manual test
+        eraseSession();
         return NEWS_EDIT;
+    }
+
+    public String deleteNews(News news) {
+        newsService.deleteNews(news);
+        eraseSession();
+        return HOME;
     }
 
     public String saveComment() {
         try {
             this.news = newsService.createCommentForNews(newComment, news);
+            putNewsInSession(news);
         } catch (ServiceException e) {
             LOGGER.warn("Cannot create comment", e);
         }
-        this.newComment = new Comment();
         return NEWS_VIEW;
-    }
-
-    public String deleteNews(News news) {
-        newsService.deleteNews(news);
-        return HOME;
     }
 
     public String deleteComment(Comment comment) {
@@ -122,6 +131,14 @@ public class NewsManager implements Serializable {
         return NEWS_VIEW;
     }
 
+    private void eraseSession() {
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("news");
+    }
+
+    private void putNewsInSession(News news) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().put("news", news);
+    }
 
     public void setNews(News news) {
         this.news = news;

@@ -17,7 +17,11 @@ public interface NewsService {
 
     void createNews(News news) throws ServiceException;
 
-    News createCommentForNews(Comment comment,News news) throws ServiceException;
+    News createCommentForNews(Comment comment, News news) throws ServiceException;
 
-    News deleteCommentFromNews(Comment comment,News news) throws ServiceException;
+    News deleteCommentFromNews(Comment comment, News news) throws ServiceException;
+
+    List<News> getPaginatedList(int pageNumber, int pageSize);
+
+    int newsPageCountForPageSize(int pageSize);
 }
