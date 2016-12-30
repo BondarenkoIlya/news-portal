@@ -4,6 +4,7 @@ import com.epam.ilya.dao.api.UserDaoLocal;
 import com.epam.ilya.dao.exceptions.DaoException;
 import com.epam.ilya.domain.entities.User;
 
+import javax.annotation.Resource;
 import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -30,7 +31,6 @@ public class UserDaoJPA implements UserDaoLocal, Serializable {
         entityManager.flush();
         return user;
     }
-
 
     @Override
     public User findByName(String name) throws DaoException {

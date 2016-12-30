@@ -1,10 +1,10 @@
 package com.epam.ilya.security;
 
+import com.epam.ilya.api.UserService;
 import com.epam.ilya.dao.api.UserDaoLocal;
 import com.epam.ilya.dao.exceptions.DaoException;
 import com.epam.ilya.domain.entities.UserRole;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.epam.ilya.exception.ServiceException;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,19 +21,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@ComponentScan({"com.epam.ilya.dao.impl"})
+
 @Service("userDetailsServiceImpl")
+@ComponentScan(basePackages = {"com.epam.ilya.dao.impl", "com.epam.ilya.dao.api"})
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Resource(lookup = "userDaoJPA")
-    private UserDaoLocal userDaoLocal;
+    @Inject
+    private UserDaoLocal userDao;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         com.epam.ilya.domain.entities.User user;
         List<GrantedAuthority> authorities;
         try {
-            user = userDaoLocal.findByName(username);
+            user = userDao.findByName(username);
             authorities = buildUserAuthority(user.getUserRole());
         } catch (DaoException e) {
             throw new UsernameNotFoundException("Have no user with username -" + username, e);
