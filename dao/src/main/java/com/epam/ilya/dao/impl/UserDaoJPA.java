@@ -10,6 +10,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
+import javax.persistence.Query;
 import java.io.Serializable;
 
 @Dependent
@@ -34,7 +35,10 @@ public class UserDaoJPA implements UserDaoLocal, Serializable {
 
     @Override
     public User findByName(String name) throws DaoException {
-        User user = entityManager.find(User.class, name);
+        User user;
+        Query query = entityManager.createQuery("SELECT user from User user where user.name LIKE :value");
+        query.setParameter("value", name);
+        user = (User) query.getSingleResult();
         if (user == null) {
             throw new DaoException("Have no such user");
         }

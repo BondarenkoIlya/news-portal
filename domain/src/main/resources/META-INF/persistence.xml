@@ -8,6 +8,8 @@
         <class>com.epam.ilya.domain.entities.News</class>
         <class>com.epam.ilya.domain.entities.Comment</class>
         <class>com.epam.ilya.domain.entities.BaseEntity</class>
+        <class>com.epam.ilya.domain.entities.User</class>
+        <class>com.epam.ilya.domain.entities.UserRole</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
