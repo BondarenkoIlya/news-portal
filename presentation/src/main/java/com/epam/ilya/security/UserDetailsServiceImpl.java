@@ -23,20 +23,23 @@ import java.util.Set;
 
 
 @Service("userDetailsServiceImpl")
-@ComponentScan(basePackages = {"com.epam.ilya.dao.impl", "com.epam.ilya.dao.api"})
+//@ComponentScan(basePackages = {"com.epam.ilya.dao.impl", "com.epam.ilya.dao.api"})
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Inject
-    private UserDaoLocal userDao;
+    private UserService userService;
+
+    public UserDetailsServiceImpl(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         com.epam.ilya.domain.entities.User user;
         List<GrantedAuthority> authorities;
         try {
-            user = userDao.findByName(username);
+            user = userService.findByName(username);
             authorities = buildUserAuthority(user.getUserRole());
-        } catch (DaoException e) {
+        } catch (ServiceException e) {
             throw new UsernameNotFoundException("Have no user with username -" + username, e);
         }
         return buildUserForAuthentication(user, authorities);

@@ -17,10 +17,10 @@ public class User extends BaseEntity implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "enable")
+    @Column(name = "enabled")
     private boolean enabled;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE , fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
