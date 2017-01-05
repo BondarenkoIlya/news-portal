@@ -18,7 +18,7 @@
         </h:selectOneMenu>
     </h:form>
     <p:outputLabel value="#{message['news.list']}"/>
-    <h:form>
+    <h:form prependId="false">
         <p:dataTable value="#{listManager.paginatedList}" var="newsItem">
             <p:column>
 

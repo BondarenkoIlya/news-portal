@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:form prependId="false">
+    <h:outputLabel value="User Id: " for="j_username" />
+    <h:inputText id="j_username" label="User Id" required="true" value="#{loginBean.name}" />
+    <h:outputLabel value="Password: "  for ="j_password" />
+    <h:inputSecret id="j_password" value="#{loginBean.password}" />
+    <h:commandButton value="Submit" action="#{loginBean.login}" />
+</h:form>
+
+</html>
