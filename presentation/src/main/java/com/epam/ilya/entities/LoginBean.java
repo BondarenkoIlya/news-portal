@@ -26,18 +26,12 @@ public class LoginBean implements Serializable {
     private String password;
 
     public String login() throws ServletException, IOException {
-
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
-        HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
-        Map<String, String[]> parameterMap = request.getParameterMap();
-        String[] names = getStringArray(username);
-        String[] pass = getStringArray(password);
-        parameterMap.put("username",names);
-        parameterMap.put("password",pass);
-
-        return request.getContextPath()+"/login";
+        ExternalContext extenalContext = facesContext.getExternalContext();
+        RequestDispatcher dispatcher = ((ServletRequest)extenalContext.getRequest()).getRequestDispatcher("/login");
+        dispatcher.forward((ServletRequest)extenalContext.getRequest(), (ServletResponse)extenalContext.getResponse());
+        facesContext.responseComplete();
+        return null;
     }
 
     private String[] getStringArray(String string) {

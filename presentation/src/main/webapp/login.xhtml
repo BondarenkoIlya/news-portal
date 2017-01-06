@@ -10,11 +10,11 @@
     <title>News</title>
 </h:head>
 <h:body>
-    <h:form>
-        <h:outputLabel value="User Id: " for="j_username"/>
-        <h:inputText id="j_username"  label="User Id" required="true"/>
-        <h:outputLabel value="Password:" for="j_password"/>
-        <h:inputSecret id="j_password"  required="true"/>
+    <h:form prependId="false">
+        <h:outputLabel value="User Id: " for="username"/>
+        <h:inputText id="username"  label="User Id" required="true"/>
+        <h:outputLabel value="Password:" for="password"/>
+        <h:inputSecret id="password"  required="true"/>
         <p:commandButton value="Submit" action="#{loginBean.login()}"/>
     </h:form>
     <!--<form action="${request.contextPath}/login" method="POST">
