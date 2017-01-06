@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-<h:form prependId="false">
-    <h:outputLabel value="User Id: " for="j_username" />
-    <h:inputText id="j_username" label="User Id" required="true" value="#{loginBean.name}" />
-    <h:outputLabel value="Password: "  for ="j_password" />
-    <h:inputSecret id="j_password" value="#{loginBean.password}" />
-    <h:commandButton value="Submit" action="#{loginBean.login}" />
-</h:form>
-
+<html lang="#{language.language}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view locale="#{language.locale}"/>
+<h:head>
+    <title>News</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:outputLabel value="User Id: " for="j_username"/>
+        <h:inputText id="j_username"  label="User Id" required="true"/>
+        <h:outputLabel value="Password:" for="j_password"/>
+        <h:inputSecret id="j_password"  required="true"/>
+        <p:commandButton value="Submit" action="#{loginBean.login()}"/>
+    </h:form>
+    <!--<form action="${request.contextPath}/login" method="POST">
+        <label for="j_username">User Id: </label>
+        <input id="j_username" name="username" type="text" />
+        <label for="j_password">Password: </label>
+        <input id="j_password" name="password" type="password"/>
+        <input type="submit" value="Submit"/>
+    </form>-->
+</h:body>
 </html>

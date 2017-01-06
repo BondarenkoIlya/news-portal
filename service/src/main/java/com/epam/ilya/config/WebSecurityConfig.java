@@ -28,10 +28,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                //.antMatchers("/home.xhtml").hasAnyRole("USER")
                 .anyRequest().hasAnyRole("USER")
                 .and()
                 .formLogin()
+                    .loginPage("/login.xhtml").permitAll()
+                    .loginProcessingUrl("/login").permitAll()
+                    .successForwardUrl("/home.xhtml")
                 .and()
-                .httpBasic();
+                .httpBasic()
+                .and()
+                .csrf().disable();
     }
 }

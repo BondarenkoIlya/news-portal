@@ -23,7 +23,6 @@ import java.util.Set;
 @ComponentScan(basePackages = {"com.epam.ilya.impl", "com.epam.ilya.api"})
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    //    @Inject
     @Resource(lookup = "java:app/news/UserServiceImpl")
     private UserService userService;
 

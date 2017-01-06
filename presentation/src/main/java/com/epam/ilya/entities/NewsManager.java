@@ -23,8 +23,8 @@ public class NewsManager implements Serializable {
 
     private static final long serialVersionUID = -3141474265953868096L;
 
-    public static final String NEWS_VIEW = "news-view?faces-redirect=true";
-    public static final String NEWS_EDIT = "news-edit?faces-redirect=true";
+    public static final String NEWS_VIEW = "pages/news-view?faces-redirect=true";
+    public static final String NEWS_EDIT = "pages/news-edit?faces-redirect=true";
     public static final String HOME = "home?faces-redirect=true";
 
     @Inject
@@ -60,7 +60,7 @@ public class NewsManager implements Serializable {
         }
     }
 
-    public String show(News news) {//cope paste , read referrer
+    public String show(News news) {
         try {
             this.news = newsService.findById(news.getId());
             putNewsInSession(news);
