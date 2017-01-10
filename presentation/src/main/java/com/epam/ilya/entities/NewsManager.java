@@ -23,9 +23,9 @@ public class NewsManager implements Serializable {
 
     private static final long serialVersionUID = -3141474265953868096L;
 
-    public static final String NEWS_VIEW = "pages/news-view?faces-redirect=true";
-    public static final String NEWS_EDIT = "pages/news-edit?faces-redirect=true";
-    public static final String HOME = "home?faces-redirect=true";
+    public static final String NEWS_VIEW = "/pages/news-view?faces-redirect=true";
+    public static final String NEWS_EDIT = "/pages/user/news-edit?faces-redirect=true";
+    public static final String HOME = "/pages/home?faces-redirect=true";
 
     @Inject
     private NewsService newsService;

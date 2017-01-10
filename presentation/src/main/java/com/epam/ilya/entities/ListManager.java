@@ -45,14 +45,14 @@ public class ListManager {
         if (pageNumber != pageCount) {
             this.pageNumber = pageNumber + 1;
         }
-        return "home?faces-redirect=true";
+        return "/pages/home?faces-redirect=true";
     }
 
     public String previousPage() {
         if (pageNumber != 1) {
             this.pageNumber -= 1;
         }
-        return "home?faces-redirect=true";
+        return "/pages/home?faces-redirect=true";
     }
 
     public void setPageCount(int pageCount) {
