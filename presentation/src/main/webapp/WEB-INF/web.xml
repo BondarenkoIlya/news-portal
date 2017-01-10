@@ -6,7 +6,7 @@
 
     <!-- Welcome page -->
     <welcome-file-list>
-        <welcome-file>faces/home.xhtml</welcome-file>
+        <welcome-file>/pages/home.xhtml</welcome-file>
     </welcome-file-list>
 
     <!-- JSF mapping -->
