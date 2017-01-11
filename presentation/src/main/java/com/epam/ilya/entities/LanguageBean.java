@@ -7,6 +7,11 @@ import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.Locale;
 
+/**
+ * Class for work with language on view
+ *
+ * @author Ilya_Bondarenko
+ */
 @ManagedBean(name = "language")
 @SessionScoped
 public class LanguageBean implements Serializable {
@@ -15,19 +20,35 @@ public class LanguageBean implements Serializable {
 
     private Locale locale;
 
+    /**
+     * Method initialize session's locale
+     */
     @PostConstruct
     public void init() {
         locale = FacesContext.getCurrentInstance().getExternalContext().getRequestLocale();
     }
 
+    /**
+     *
+     * @return present locale
+     */
     public Locale getLocale() {
         return locale;
     }
 
+    /**
+     *
+     * @return present language name
+     */
     public String getLanguage() {
         return locale.getLanguage();
     }
 
+    /**
+     * Method changes present language on another
+     *
+     * @param language on changing
+     */
     public void setLanguage(String language) {
         locale = new Locale(language);
         FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);

@@ -4,8 +4,20 @@ import com.epam.ilya.dao.exceptions.DaoException;
 
 import java.io.Serializable;
 
+/**
+ *  Interface declares CRUD operation method
+ *
+ * @param <T> type of entity
+ */
 public interface Dao<T> extends Serializable {
 
+    /**
+     * Method creates new record in database by entity
+     *
+     * @param entity to create
+     * @return entity with id from database
+     * @throws DaoException in case if entity have not got enough information
+     */
     T create(T entity) throws DaoException;
 
     /**

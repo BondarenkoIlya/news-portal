@@ -5,6 +5,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
+/**
+ * Class describes explanation or guest's thoughts about {@link News}
+ *
+ * @author Ilya_Bondarenko
+ */
 @Entity
 @Table(name = "comments")
 public class Comment extends BaseEntity implements Serializable {

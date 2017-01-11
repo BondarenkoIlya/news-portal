@@ -11,6 +11,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class describe information about current event or affair
+ *
+ * @author Ilya_Bondarenko
+ */
 @Entity
 @Table(name = "news")
 public class News extends BaseEntity implements Serializable {

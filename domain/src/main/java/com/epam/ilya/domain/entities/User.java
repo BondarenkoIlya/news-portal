@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author Ilya_Bondarenko
+ */
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity implements Serializable {

@@ -11,6 +11,11 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ *
+ * @author Ilya_Bondarenko
+ */
 @Dependent
 public class NewsDaoJPA implements NewsDaoLocal {
 
@@ -19,6 +24,9 @@ public class NewsDaoJPA implements NewsDaoLocal {
     @PersistenceContext
     private EntityManager manager;
 
+    /**
+     * {@inheritDoc}
+     **/
     @Override
     public News create(News entity) throws DaoException {
         try {
@@ -30,6 +38,9 @@ public class NewsDaoJPA implements NewsDaoLocal {
         return entity;
     }
 
+    /**
+     * {@inheritDoc}
+     **/
     @Override
     public News findById(Long id) throws DaoException {
         News news = manager.find(News.class, id);
@@ -39,21 +50,33 @@ public class NewsDaoJPA implements NewsDaoLocal {
         return news;
     }
 
+    /**
+     * {@inheritDoc}
+     **/
     @Override
     public News update(News entity) {
         return manager.merge(entity);
     }
 
+    /**
+     * {@inheritDoc}
+     **/
     @Override
     public void delete(News entity) {
         manager.remove(manager.contains(entity) ? entity : manager.merge(entity));
     }
 
+    /**
+     * {@inheritDoc}
+     **/
     @Override
     public List<News> findAll() {
         return manager.createQuery("FROM News", News.class).getResultList();
     }
 
+    /**
+     * {@inheritDoc}
+     **/
     @Override
     public List<News> getPaginatedList(int pageNumber, int pageSize) {
         Query query = manager.createQuery("From News", News.class);
@@ -62,6 +85,9 @@ public class NewsDaoJPA implements NewsDaoLocal {
         return query.getResultList();
     }
 
+    /**
+     * {@inheritDoc}
+     **/
     @Override
     public long newsCount() {
         Query queryTotal = manager.createQuery("Select count(news.id) from News news");

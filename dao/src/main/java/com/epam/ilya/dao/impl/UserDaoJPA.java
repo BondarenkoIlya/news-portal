@@ -4,15 +4,18 @@ import com.epam.ilya.dao.api.UserDaoLocal;
 import com.epam.ilya.dao.exceptions.DaoException;
 import com.epam.ilya.domain.entities.User;
 
-import javax.annotation.Resource;
 import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import java.io.Serializable;
 
+/**
+ * {@inheritDoc}
+ *
+ * @author Ilya_Bondarenko
+ */
 @Dependent
 @Named("userDaoJPA")
 public class UserDaoJPA implements UserDaoLocal, Serializable {
@@ -22,17 +25,9 @@ public class UserDaoJPA implements UserDaoLocal, Serializable {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Override
-    public User create(User user) throws DaoException {
-        try {
-            entityManager.persist(user);
-        } catch (PersistenceException e) {
-            throw new DaoException("Not enough information for persist comment", e);
-        }
-        entityManager.flush();
-        return user;
-    }
-
+    /**
+     * {@inheritDoc}
+     **/
     @Override
     public User findByName(String name) throws DaoException {
         User user;

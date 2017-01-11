@@ -9,12 +9,18 @@ import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.util.List;
 
+/**
+ * Class for managing and paginating list of news
+ *
+ * @author Ilya_Bondarenko
+ */
 @ManagedBean
 @SessionScoped
 public class ListManager {
 
     private static final int DEFAULT_PAGE_NUMBER = 1;
     private static final int DEFAULT_PAGE_SIZE = 3;
+    private static final String NEWS_HOME = "/pages/home?faces-redirect=true";
 
     @Inject
     private NewsService newsService;
@@ -45,14 +51,14 @@ public class ListManager {
         if (pageNumber != pageCount) {
             this.pageNumber = pageNumber + 1;
         }
-        return "/pages/home?faces-redirect=true";
+        return NEWS_HOME;
     }
 
     public String previousPage() {
         if (pageNumber != 1) {
             this.pageNumber -= 1;
         }
-        return "/pages/home?faces-redirect=true";
+        return NEWS_HOME;
     }
 
     public void setPageCount(int pageCount) {

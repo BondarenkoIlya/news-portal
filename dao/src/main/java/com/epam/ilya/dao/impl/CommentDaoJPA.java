@@ -9,13 +9,26 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
+/**
+ *  {@inheritDoc}
+ *
+ *  @author Bondarenko Ilya
+ */
 @Dependent
 public class CommentDaoJPA implements CommentDaoLocal {
 
     private static final long serialVersionUID = 8865967294712055512L;
+
     @PersistenceContext
     private EntityManager manager;
 
+    /**
+     *
+     *
+     * @param entity
+     * @return
+     * @throws DaoException
+     */
     @Override
     public Comment create(Comment entity) throws DaoException {
         try {
