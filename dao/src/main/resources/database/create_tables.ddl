@@ -7,6 +7,7 @@ CREATE TABLE news
     content TEXT NOT NULL,
     creation_date DATETIME NOT NULL
 );
+
 CREATE TABLE comments
 (
     id BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -16,6 +17,7 @@ CREATE TABLE comments
     CONSTRAINT news_id_comments FOREIGN KEY (news_id) REFERENCES news (id)
 );
 CREATE INDEX news_id_comments_idx ON comments (news_id);
+
 CREATE TABLE users
 (
     id BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -23,11 +25,13 @@ CREATE TABLE users
     password VARCHAR(60) NOT NULL,
     enabled TINYINT(4) DEFAULT '1' NOT NULL
 );
+
 CREATE TABLE roles
 (
     id BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     role VARCHAR(45) NOT NULL
 );
+
 CREATE TABLE user_roles
 (
     id BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -36,5 +40,6 @@ CREATE TABLE user_roles
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (id),
     CONSTRAINT fk_role_id FOREIGN KEY (role_id) REFERENCES roles (id)
 );
+
 CREATE INDEX fk_role_idx ON user_roles (role_id);
 CREATE INDEX fk_user_idx ON user_roles (user_id);
