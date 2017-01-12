@@ -16,6 +16,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 
+/**
+ * Class bean making CRUD operation with comments and news
+ *
+ * @author Ilya_Bondarenko
+ */
 @ManagedBean
 @RequestScoped
 public class NewsManager implements Serializable {
@@ -23,9 +28,9 @@ public class NewsManager implements Serializable {
 
     private static final long serialVersionUID = -3141474265953868096L;
 
-    public static final String NEWS_VIEW = "/pages/news-view?faces-redirect=true";
-    public static final String NEWS_EDIT = "/pages/user/news-edit?faces-redirect=true";
-    public static final String HOME = "/pages/home?faces-redirect=true";
+    private static final String NEWS_VIEW = "/pages/news-view?faces-redirect=true";
+    private static final String NEWS_EDIT = "/pages/user/news-edit?faces-redirect=true";
+    private static final String HOME = "/pages/home?faces-redirect=true";
 
     @Inject
     private NewsService newsService;
@@ -46,6 +51,10 @@ public class NewsManager implements Serializable {
         return newComment;
     }
 
+    /**
+     * Method gets news from session and checks it's relevant in database
+     * In case of there are no any news, create empty one
+     */
     @PostConstruct
     public void init() {
         News sessionNews = (News) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("news");
@@ -60,6 +69,12 @@ public class NewsManager implements Serializable {
         }
     }
 
+    /**
+     * Method takes news to be shown, checks it's relevant and puts it in session for redirecting
+     *
+     * @param news to be shown
+     * @return target URL
+     */
     public String show(News news) {
         try {
             this.news = newsService.findById(news.getId());
@@ -71,6 +86,12 @@ public class NewsManager implements Serializable {
         return NEWS_VIEW;
     }
 
+    /**
+     * Method takes news to be edited, checks it's relevant and puts it in session for redirecting
+     *
+     * @param news to be edited
+     * @return target URL
+     */
     public String editNews(News news) {
         try {
             this.news = newsService.findById(news.getId());
@@ -81,6 +102,12 @@ public class NewsManager implements Serializable {
         return NEWS_EDIT;
     }
 
+    /**
+     * Method saves edited version of the news or create new one
+     *
+     * @param news to be saved
+     * @return target URL
+     */
     public String saveNews(News news) {
         if (news.getId() == null) {
             try {
@@ -99,18 +126,34 @@ public class NewsManager implements Serializable {
         return NEWS_VIEW;
     }
 
+    /**
+     * Method cleans up session and redirecting on page for adding news
+     *
+     * @return target URL
+     */
     public String addNews() {
         this.news = new News();
         eraseSession();
         return NEWS_EDIT;
     }
 
+    /**
+     * Method deletes selected news
+     *
+     * @param news to be deleted
+     * @return target URL
+     */
     public String deleteNews(News news) {
         newsService.deleteNews(news);
         eraseSession();
         return HOME;
     }
 
+    /**
+     * Method creates new comment for selected news
+     *
+     * @return target URL
+     */
     public String saveComment() {
         try {
             this.news = newsService.createCommentForNews(newComment, news);
@@ -121,6 +164,12 @@ public class NewsManager implements Serializable {
         return NEWS_VIEW;
     }
 
+    /**
+     * Method deletes selected comment
+     *
+     * @param comment to be deleted
+     * @return target URL
+     */
     public String deleteComment(Comment comment) {
         try {
             newsService.deleteCommentFromNews(comment, news);

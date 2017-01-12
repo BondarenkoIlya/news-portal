@@ -8,8 +8,12 @@ import com.epam.ilya.exception.ServiceException;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.sql.rowset.serial.SerialException;
 
+/**
+ * Implementation of {@link UserService}
+ *
+ * @author Ilya_Bondarenko
+ */
 @Stateless
 public class UserServiceImpl implements UserService {
 
@@ -20,7 +24,9 @@ public class UserServiceImpl implements UserService {
         this.userDao = userDao;
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User getUserByName(String username) throws ServiceException {
         try {

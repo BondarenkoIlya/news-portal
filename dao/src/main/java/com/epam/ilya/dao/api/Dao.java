@@ -5,7 +5,7 @@ import com.epam.ilya.dao.exceptions.DaoException;
 import java.io.Serializable;
 
 /**
- *  Interface declares CRUD operation method
+ * Interface declares CRUD operation method
  *
  * @param <T> type of entity
  */

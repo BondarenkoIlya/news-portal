@@ -1,6 +1,9 @@
 package com.epam.ilya.domain.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "roles")
-public class UserRole extends BaseEntity implements Serializable{
+public class UserRole extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = -2044188054947951995L;
 

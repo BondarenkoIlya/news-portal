@@ -11,6 +11,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+/**
+ * {@inheritDoc}
+ *
+ * @author Ilya_Bondarenko
+ */
 @Configuration
 @ComponentScan({"com.epam.ilya.security"})
 @EnableWebSecurity
@@ -21,11 +26,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Qualifier("userDetailsServiceImpl")
     private UserDetailsService userDetailsService;
 
+    /**
+     * {@inheritDoc}
+     */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -33,19 +44,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/pages/*", "/*").permitAll()
                 .antMatchers("/pages/user/**").hasAnyRole("USER")
                 .antMatchers("/pages/admin/**").hasAnyRole("ADMIN")
-                    .and()
+                .and()
                 .formLogin()
                 .loginPage("/login.xhtml")
                 .loginProcessingUrl("/login")
                 .successForwardUrl("/pages/home.xhtml")
-                    .and()
+                .and()
                 .logout()
                 .logoutUrl("/logout").permitAll()
                 .logoutSuccessUrl("/pages/home.xhtml")
                 .invalidateHttpSession(true)
-                    .and()
+                .and()
                 .httpBasic()
-                    .and()
+                .and()
                 .csrf().disable();
     }
 }

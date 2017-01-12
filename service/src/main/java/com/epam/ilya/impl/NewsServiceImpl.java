@@ -12,22 +12,33 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
 
+/**
+ * Implements all methods from {@link NewsService}
+ *
+ * @author Ilya_Bondarenko
+ */
 @Stateless
 public class NewsServiceImpl implements NewsService {
 
-
     private NewsDaoLocal newsDaoLocal;
-
 
     private CommentDaoLocal commentDaoLocal;
 
+    /**
+     * Constructor for injecting dependencies
+     *
+     * @param newsDaoLocal    interface for working with news's Dao
+     * @param commentDaoLocal interface for working with comment's Dao
+     */
     @Inject
     public NewsServiceImpl(NewsDaoLocal newsDaoLocal, CommentDaoLocal commentDaoLocal) {
         this.newsDaoLocal = newsDaoLocal;
         this.commentDaoLocal = commentDaoLocal;
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public News findById(long id) throws ServiceException {
         try {
@@ -37,16 +48,17 @@ public class NewsServiceImpl implements NewsService {
         }
     }
 
-    @Override
-    public List<News> getAllNews() {
-        return newsDaoLocal.findAll();
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteNews(News news) {
         newsDaoLocal.delete(news);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public News updateNews(News news) throws ServiceException {
         try {
@@ -57,6 +69,9 @@ public class NewsServiceImpl implements NewsService {
         return newsDaoLocal.update(news);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void createNews(News news) throws ServiceException {
         try {
@@ -66,6 +81,9 @@ public class NewsServiceImpl implements NewsService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public News createCommentForNews(Comment comment, News news) throws ServiceException {
         News newNews;
@@ -79,6 +97,9 @@ public class NewsServiceImpl implements NewsService {
         return newNews;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public News deleteCommentFromNews(Comment comment, News news) throws ServiceException {
         News updatedNews;
@@ -92,11 +113,17 @@ public class NewsServiceImpl implements NewsService {
         return updatedNews;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<News> getPaginatedList(int pageNumber, int pageSize) {
         return newsDaoLocal.getPaginatedList(pageNumber, pageSize);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int newsPageCountForPageSize(int pageSize) {
         long countResult = newsDaoLocal.newsCount();

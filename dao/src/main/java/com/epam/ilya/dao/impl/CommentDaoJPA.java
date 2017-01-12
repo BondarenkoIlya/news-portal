@@ -10,9 +10,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 /**
- *  {@inheritDoc}
+ * {@inheritDoc}
  *
- *  @author Bondarenko Ilya
+ * @author Bondarenko Ilya
  */
 @Dependent
 public class CommentDaoJPA implements CommentDaoLocal {
@@ -23,8 +23,6 @@ public class CommentDaoJPA implements CommentDaoLocal {
     private EntityManager manager;
 
     /**
-     *
-     *
      * @param entity
      * @return
      * @throws DaoException

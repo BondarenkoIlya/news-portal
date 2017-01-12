@@ -29,7 +29,6 @@ public class LanguageBean implements Serializable {
     }
 
     /**
-     *
      * @return present locale
      */
     public Locale getLocale() {
@@ -37,7 +36,6 @@ public class LanguageBean implements Serializable {
     }
 
     /**
-     *
      * @return present language name
      */
     public String getLanguage() {

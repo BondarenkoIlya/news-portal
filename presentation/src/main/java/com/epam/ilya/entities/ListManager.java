@@ -29,12 +29,20 @@ public class ListManager {
     private int pageSize;
     private int pageCount;
 
+    /**
+     * Method initializes default parameters for pagination
+     */
     @PostConstruct
     public void init() {
         this.pageNumber = DEFAULT_PAGE_NUMBER;
         this.pageSize = DEFAULT_PAGE_SIZE;
     }
 
+    /**
+     * Method connects with service for getting paginated list
+     *
+     * @return paginated list of news
+     */
     public List<News> getPaginatedList() {
         if (pageNumber > pageCount) {
             pageNumber = DEFAULT_PAGE_NUMBER;
@@ -42,11 +50,21 @@ public class ListManager {
         return newsService.getPaginatedList(pageNumber, pageSize);
     }
 
+    /**
+     * Method counts news through service
+     *
+     * @return news amount
+     */
     public int getPageCount() {
         this.pageCount = newsService.newsPageCountForPageSize(pageSize);
         return pageCount;
     }
 
+    /**
+     * Method change page number on next page
+     *
+     * @return target URL
+     */
     public String nextPage() {
         if (pageNumber != pageCount) {
             this.pageNumber = pageNumber + 1;
@@ -54,6 +72,11 @@ public class ListManager {
         return NEWS_HOME;
     }
 
+    /**
+     * Method change page number on previous page
+     *
+     * @return target URL
+     */
     public String previousPage() {
         if (pageNumber != 1) {
             this.pageNumber -= 1;

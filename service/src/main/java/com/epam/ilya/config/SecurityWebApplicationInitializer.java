@@ -5,12 +5,23 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
 import javax.servlet.DispatcherType;
 import java.util.EnumSet;
 
+/**
+ * {@inheritDoc}
+ *
+ * @author Ilya_Bondarenko
+ */
 public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer {
 
+    /**
+     * {@inheritDoc}
+     */
     public SecurityWebApplicationInitializer() {
         super(WebSecurityConfig.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected EnumSet<DispatcherType> getSecurityDispatcherTypes() {
         EnumSet<DispatcherType> securityDispatcherTypes = super.getSecurityDispatcherTypes();

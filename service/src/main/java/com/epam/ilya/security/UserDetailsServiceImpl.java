@@ -18,7 +18,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
+/**
+ * Class implements method for working with user details for security
+ *
+ * @author Ilya_Bondarenko
+ */
 @Service("userDetailsServiceImpl")
 @ComponentScan(basePackages = {"com.epam.ilya.impl", "com.epam.ilya.api"})
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -26,6 +30,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Resource(lookup = "java:app/news/UserServiceImpl")
     private UserService userService;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         com.epam.ilya.domain.entities.User user;

@@ -1,7 +1,7 @@
 package com.epam.ilya.dao.exceptions;
 
 /**
- * Class covers all exceptions arose on Dao layer
+ * Class covers all exceptions arose in Dao layer
  *
  * @author Ilya_Bondarenko
  */

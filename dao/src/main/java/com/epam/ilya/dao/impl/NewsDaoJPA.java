@@ -70,14 +70,6 @@ public class NewsDaoJPA implements NewsDaoLocal {
      * {@inheritDoc}
      **/
     @Override
-    public List<News> findAll() {
-        return manager.createQuery("FROM News", News.class).getResultList();
-    }
-
-    /**
-     * {@inheritDoc}
-     **/
-    @Override
     public List<News> getPaginatedList(int pageNumber, int pageSize) {
         Query query = manager.createQuery("From News", News.class);
         query.setFirstResult((pageNumber - 1) * pageSize);
