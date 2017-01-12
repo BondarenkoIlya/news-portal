@@ -27,7 +27,7 @@
                         <h:outputText value="#{newsItem.author}" id="author"/><br/>
 
 
-                        <p:commandButton  value="#{message['news.list.detail']}" action="#{newsManager.show(newsItem)}"/>
+                        <p:commandButton value="#{message['news.list.detail']}" action="#{newsManager.show(newsItem)}"/>
 
                     </p:column>
                 </p:dataTable>
@@ -48,7 +48,8 @@
                 </p:column>
             </h:form>
             <h:form>
-                <p:commandButton rendered="#{request.isUserInRole('USER')}" value="#{message['leftbar.link.news.new']}" action="#{newsManager.addNews()}"/>
+                <p:commandButton rendered="#{request.isUserInRole('USER')}" value="#{message['leftbar.link.news.new']}"
+                                 action="#{newsManager.addNews()}"/>
             </h:form>
         </ui:define>
     </ui:composition>

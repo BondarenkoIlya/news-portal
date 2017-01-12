@@ -16,7 +16,7 @@
 
                 <f:facet name="options">
                     <h:outputText rendered="#{not (request.userPrincipal eq null)}"
-                                value="#{message['user.hello']} #{request.userPrincipal.name} "/>
+                                  value="#{message['user.hello']} #{request.userPrincipal.name} "/>
                     <h:selectOneMenu value="#{language.language}" onchange="submit()">
                         <f:selectItem itemValue="en" itemLabel="English"/>
                         <f:selectItem itemValue="ru" itemLabel="Russian"/>
@@ -24,8 +24,10 @@
                     </h:selectOneMenu>
                     <p:commandButton rendered="#{request.userPrincipal eq null}" value="Login" action="/login.xhtml"/>
                 </f:facet>
-                <p:menuitem style="margin-left: 400px" rendered="#{not (request.userPrincipal eq null)}" value="Logout" url="/logout"/>
-                <p:menuitem style="margin-left: 500px" rendered="#{request.isUserInRole('ADMIN')}" value="Admin cabinet" action="/pages/admin/admin-cabinet?faces-redirect=true"/>
+                <p:menuitem style="margin-left: 400px" rendered="#{not (request.userPrincipal eq null)}" value="Logout"
+                            url="/logout"/>
+                <p:menuitem style="margin-left: 500px" rendered="#{request.isUserInRole('ADMIN')}" value="Admin cabinet"
+                            action="/pages/admin/admin-cabinet?faces-redirect=true"/>
             </p:menubar>
         </h:form>
     </ui:composition>

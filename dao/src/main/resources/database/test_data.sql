@@ -1,4 +1,4 @@
-INSERT INTO NEWS VALUES (null,
+INSERT INTO NEWS VALUES (NULL,
                          'Syrian rebels launch Aleppo counter attack',
                          'Ilya',
                          'A rebel fighter part of the Jabhat Fatah al Sham, attends military training in the besieged rebel held Aleppo, Syria October 26, 2016.',
@@ -39,11 +39,12 @@ One of the biggest factors in polling today is the prevalence of cellphones. Abo
 This makes it harder and more expensive for pollsters to gather a truly random sample of opinions because U.S. law prohibits computerized auto-dialing (also known as robocalls) to cellphones and there is no central directory for cellphones.
 Polling cellphones can costs 30 to 50 percent more than polling land lines due to requirements that the numbers be dialed manually, according to Pew Research Center estimates. This has led polling outfits to generally rely on lower sample sizes to come up with results.
 Calls to cellphones are also more easily screened by their users, and as a result pollsters say they connect with just 10 percent of people they try to contact, down from 80 percent a few decades ago.
-But Courtney Kennedy, director of survey research at Pew said, "In terms of data, the quality is better." Many respondents on cellphones are young and racially diverse, she said.','2016-10-29');
+But Courtney Kennedy, director of survey research at Pew said, "In terms of data, the quality is better." Many respondents on cellphones are young and racially diverse, she said.',
+                         '2016-10-29');
 
 INSERT INTO NEWS VALUES (NULL,
                          'Internet providers now need permission to share or sell your web browsing data',
-                          'Ilya',
+                         'Ilya',
                          'The U.S. Federal Communications Commission has finalized groundbreaking new rules that force all internet providers, like Verizon, Comcast and AT&T, to obtain explicit consent from subscribers before selling data about online behavior to third-party ...',
                          'The U.S. Federal Communications Commission has finalized groundbreaking new rules that force all internet providers, like Verizon, Comcast and AT&T, to obtain explicit consent from subscribers before selling data about online behavior to third-party marketers.
 That includes information about what websites you visit, mobile location information, app usage and other potentially sensitive details inadvertently collected in the course of using the internet at home or on a smartphone.
@@ -59,7 +60,8 @@ Still, the FCC rules are final. And if internet providers want to oppose them, t
 Here are the basics of the new rules:
 ISPs need to get consent, somehow, from subscribers before using or selling their sensitive data — browsing history, app usage, location information, financial data — to third parties, like online advertisers.
 ISPs do not need permission from subscribers to share non-sensitive information, which includes IP addresses, email addresses, service tiers or bandwidth usage. But internet providers must create a way for subscribers to opt out of sharing that information if they so chose.
-The new rules don’t require internet companies to gain consent to advertise other communications services they provide. So if Verizon wanted to market its home broadband service to a current mobile user, that would be fine. If Verizon wanted to share browsing data with other parts of the company that do not provide communications services, like Yahoo, it would have to get consent. And there’s no requirement to provide a way to opt out of internal marketing.','2016-10-29');
+The new rules don’t require internet companies to gain consent to advertise other communications services they provide. So if Verizon wanted to market its home broadband service to a current mobile user, that would be fine. If Verizon wanted to share browsing data with other parts of the company that do not provide communications services, like Yahoo, it would have to get consent. And there’s no requirement to provide a way to opt out of internal marketing.',
+                         '2016-10-29');
 
 INSERT INTO NEWS VALUES (NULL,
                          'For Wade, Chicago homecoming a ''special'' moment',
@@ -74,7 +76,8 @@ Wade said he "had an out-of-body experience" after knocking down the 3, which in
 Wade''s performance underscored why the Bulls'' front office was so happy to land him over the summer. Not only did he help lead Chicago to victory, but he also gave the team a jolt of energy throughout the night and made plays when the game was on the line.
 "He means a lot to this team," Bulls power forward Taj Gibson said. "We need him to be the Wade he''s always been. The guy who''s not afraid to attack. The guy''s who''s not afraid to take big shots like you see late in the game. ... When D-Wade took that shot, he made it, his expressions, how he was jumping around, his swag -- it was kind of awkward, because I''m used to him kind of doing that against us on the opposing side. But it was a great thing. I was happy we got a win."
 Butler, who the Bulls hope can mature under Wade''s tutelage, sang his new teammate''s praises as well.
-"That''s one less player I got to guard in this league, to tell you the truth, so I''m excited about that," Butler said of Wade. "But the way the game slows down for him, he knows where guys are going to be. It''s hard to do, but that''s what happens whenever you play 13, going on 14, years in this league. He''s so much smarter than a lot of guys, using his body and his athleticism to his advantage, so I''m taking note."','2016-10-29');
+"That''s one less player I got to guard in this league, to tell you the truth, so I''m excited about that," Butler said of Wade. "But the way the game slows down for him, he knows where guys are going to be. It''s hard to do, but that''s what happens whenever you play 13, going on 14, years in this league. He''s so much smarter than a lot of guys, using his body and his athleticism to his advantage, so I''m taking note."',
+                         '2016-10-29');
 
 INSERT INTO NEWS VALUES (NULL,
                          'First-ever dinosaur brain tissue found',
@@ -91,4 +94,5 @@ Norman and his colleagues determined the brain tissue was likely from a species 
 Though some dinosaurs are believed to have sported quite large brains, namely those that led to modern birds, Norman said this particular fossil does not display such size.
 The researchers also cautioned against drawing conclusions about the intelligence of dinosaurs from this particular fossil. However, they do posit that this dinosaur and its relatives had relatively complex behaviors.
 “It is reasonable to suppose that iguanodontian dinosaurs of this type were moderately complex behaviorally (no less so than modern crocodilians, for example),” the researchers wrote.
-Their findings were published Oct. 27 in a Special Publication of the Geological Society of London, in tribute to Martin Brasier of the University of Oxford, who died in 2014. Brasier and Norman coordinated the research into this particular fossil during the years before Brasier’s death in a traffic accident.','2016-10-29');
+Their findings were published Oct. 27 in a Special Publication of the Geological Society of London, in tribute to Martin Brasier of the University of Oxford, who died in 2014. Brasier and Norman coordinated the research into this particular fossil during the years before Brasier’s death in a traffic accident.',
+                         '2016-10-29');
